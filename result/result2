@@ -1,0 +1,52 @@
+----------------output the graph in adjacency list----------------
+ [1]----->[2]----->[3]
+ [2]----->[4]----->[5]
+ [3]----->[4]----->[5]
+ [4]----->[6]
+ [5]----->[6]
+ [6]----->[7]
+ [7]
+
+Eager Reuse		:
+Tensor_ID[ 1]	Base_address[ 2]	Base+Size[ 6]	lifetime_begin[ 1]	lifetime_end[ 3]
+Tensor_ID[ 2]	Base_address[ 8]	Base+Size[14]	lifetime_begin[ 2]	lifetime_end[ 5]
+Tensor_ID[ 3]	Base_address[ 6]	Base+Size[ 8]	lifetime_begin[ 3]	lifetime_end[ 5]
+Tensor_ID[ 4]	Base_address[ 1]	Base+Size[ 6]	lifetime_begin[ 4]	lifetime_end[ 6]
+Tensor_ID[ 5]	Base_address[ 0]	Base+Size[ 1]	lifetime_begin[ 5]	lifetime_end[ 6]
+Tensor_ID[ 6]	Base_address[ 6]	Base+Size[ 9]	lifetime_begin[ 6]	lifetime_end[ 7]
+Tensor_ID[ 7]	Base_address[ 6]	Base+Size[ 6]	lifetime_begin[ 7]	lifetime_end[ 7]
+Eager Reuse		 Result:	memory_size=14	overhead=3 us
+
+
+Large tensor first	:
+Tensor_ID[ 1]	Base_address[ 6]	Base+Size[10]	lifetime_begin[ 1]	lifetime_end[ 3]
+Tensor_ID[ 2]	Base_address[ 0]	Base+Size[ 6]	lifetime_begin[ 2]	lifetime_end[ 5]
+Tensor_ID[ 3]	Base_address[11]	Base+Size[13]	lifetime_begin[ 3]	lifetime_end[ 5]
+Tensor_ID[ 4]	Base_address[ 6]	Base+Size[11]	lifetime_begin[ 4]	lifetime_end[ 6]
+Tensor_ID[ 5]	Base_address[13]	Base+Size[14]	lifetime_begin[ 5]	lifetime_end[ 6]
+Tensor_ID[ 6]	Base_address[ 0]	Base+Size[ 3]	lifetime_begin[ 6]	lifetime_end[ 7]
+Tensor_ID[ 7]	Base_address[ 0]	Base+Size[ 0]	lifetime_begin[ 7]	lifetime_end[ 7]
+Large tensor first	 Result:	memory_size=14	overhead=2 us
+
+
+Short lifetime first	:
+Tensor_ID[ 1]	Base_address[ 0]	Base+Size[ 4]	lifetime_begin[ 1]	lifetime_end[ 3]
+Tensor_ID[ 2]	Base_address[11]	Base+Size[17]	lifetime_begin[ 2]	lifetime_end[ 5]
+Tensor_ID[ 3]	Base_address[ 4]	Base+Size[ 6]	lifetime_begin[ 3]	lifetime_end[ 5]
+Tensor_ID[ 4]	Base_address[ 6]	Base+Size[11]	lifetime_begin[ 4]	lifetime_end[ 6]
+Tensor_ID[ 5]	Base_address[ 0]	Base+Size[ 1]	lifetime_begin[ 5]	lifetime_end[ 6]
+Tensor_ID[ 6]	Base_address[ 1]	Base+Size[ 4]	lifetime_begin[ 6]	lifetime_end[ 7]
+Tensor_ID[ 7]	Base_address[ 0]	Base+Size[ 0]	lifetime_begin[ 7]	lifetime_end[ 7]
+Short lifetime first	 Result:	memory_size=17	overhead=3 us
+
+
+Global Optimization	:
+Tensor_ID[ 1]	Base_address[ 0]	Base+Size[ 4]	lifetime_begin[ 1]	lifetime_end[ 3]
+Tensor_ID[ 2]	Base_address[ 5]	Base+Size[11]	lifetime_begin[ 2]	lifetime_end[ 5]
+Tensor_ID[ 3]	Base_address[11]	Base+Size[13]	lifetime_begin[ 3]	lifetime_end[ 5]
+Tensor_ID[ 4]	Base_address[ 0]	Base+Size[ 5]	lifetime_begin[ 4]	lifetime_end[ 6]
+Tensor_ID[ 5]	Base_address[13]	Base+Size[14]	lifetime_begin[ 5]	lifetime_end[ 6]
+Tensor_ID[ 6]	Base_address[ 5]	Base+Size[ 8]	lifetime_begin[ 6]	lifetime_end[ 7]
+Tensor_ID[ 7]	Base_address[ 8]	Base+Size[ 8]	lifetime_begin[ 7]	lifetime_end[ 7]
+Global Optimization	 Result:	memory_size=14	overhead=1502 us
+
